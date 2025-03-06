@@ -1,5 +1,9 @@
 @import "../../packages/ui/src/styles/main";
 
+body {
+  background: $primary-dark;
+  color: white;
+}
 
 * {
   box-sizing: border-box;

@@ -3,13 +3,31 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "npx electron ."
+    "start": "npx electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.cicada.electron",
+    "productName": "Cicada",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "electron": "^35.0.0"
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8"
   }
 }
