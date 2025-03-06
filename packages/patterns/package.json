@@ -1,0 +1,28 @@
+{
+  "name": "@repo/patterns",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./hooks": "./src/hooks/index.ts",
+    "./reducers": "./src/reducers/index.ts",
+    "./switches": "./src/switches/index.ts",
+    "./store": "./src/store/index.ts",
+    "./contexts": "./src/contexts/index.ts"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "eslint": "^9.21.0",
+    "typescript": "5.8.2",
+    "tsup": "^7.1.0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
