@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/utils/*": ["packages/utils/src/*"],
+      "@repo/patterns/*": ["packages/patterns/src/*"]
+    }
+  }
+}

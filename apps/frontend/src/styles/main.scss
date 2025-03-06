@@ -20,3 +20,14 @@ ul, ol {
   padding: 0;
   margin: 0;
 }
+
+main {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    max-width: 1202px;
+    width: 100%;
+    padding: 16px;
+  }
+}
