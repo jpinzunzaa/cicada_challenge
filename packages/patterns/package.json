@@ -1,13 +1,9 @@
 {
   "name": "@repo/patterns",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "exports": {
-    "./hooks": "./src/hooks/index.ts",
-    "./reducers": "./src/reducers/index.ts",
-    "./switches": "./src/switches/index.ts",
-    "./store": "./src/store/index.ts",
-    "./contexts": "./src/contexts/index.ts"
+    "./*": "./src/*.tsx"
   },
   "scripts": {
     "build": "tsup src/index.ts --format=cjs,esm --dts",

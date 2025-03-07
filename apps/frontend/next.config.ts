@@ -5,9 +5,7 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, '../../packages/ui/src/styles')],
   },
-  experimental: {
-    appDir: true,
-  },
+  experimental: {},
 }
 
 export default nextConfig;

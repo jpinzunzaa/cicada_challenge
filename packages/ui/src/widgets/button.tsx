@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import classnames from 'classnames';
 
 interface ButtonProps {
+  key?: string | number;
   children: ReactNode;
   className?: string;
   onClick: () => void;

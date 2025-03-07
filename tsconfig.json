@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@repo/utils/*": ["packages/utils/src/*"],
-      "@repo/patterns/*": ["packages/patterns/src/*"]
+      "@repo/patterns/*": ["packages/patterns/src/*"],
+      "@repo/ui/*": ["packages/ui/src/*"]
     }
-  }
+  },
+  "include": ["packages/*/src"]
 }

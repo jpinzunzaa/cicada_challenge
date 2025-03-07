@@ -2,7 +2,13 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "skipLibCheck": true,
+    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+    "noEmit": false
   },
   "include": ["src"]
 }
