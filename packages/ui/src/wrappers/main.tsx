@@ -1,7 +1,7 @@
 'use client'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { HistoricContext } from '@repo/patterns/contexts/historic-context'
+import HistoricContext from '@repo/patterns/contexts/historic-context'
 
 const query_client = new QueryClient({
   defaultOptions: {

@@ -13,7 +13,7 @@ interface ButtonProps {
 
 export const Button = ({ children, className, onClick, active = false }: ButtonProps) => {
   return (
-    <button className={classnames('button', className, { 'active': active })} onClick={onClick}>
+    <button disabled={active} className={classnames('button', className, { 'active': active })} onClick={onClick}>
       {children}
     </button>
   );

@@ -16,15 +16,29 @@ export interface TimeSeries {
 }
 
 export interface HistoricState {
+  pairs: [];
+  pair: string | null;
   currency: string | null;
   metadata: Metadata | null;
-  time_series: TimeSeries | null;
+  time_series: TimeSeries[];
 }
 
 export enum HistoricActionTypes {
+  SET_PAIRS = 'SET_PAIRS',
+  SET_PAIR = 'SET_PAIR',
   SET_CURRENCY = 'SET_CURRENCY',
   SET_METADATA = 'SET_METADATA',
   SET_TIME_SERIES = 'SET_TIME_SERIES',
+}
+
+export interface SetPairsAction {
+  type: HistoricActionTypes.SET_PAIRS;
+  payload: [];
+}
+
+export interface SetPairAction {
+  type: HistoricActionTypes.SET_PAIR;
+  payload: string;
 }
 
 export interface SetCurrencyAction {
@@ -39,7 +53,7 @@ export interface SetMetadataAction {
 
 export interface SetTimeSeriesAction {
   type: HistoricActionTypes.SET_TIME_SERIES;
-  payload: TimeSeries;
+  payload: TimeSeries[];
 }
 
-export type HistoricActions = SetCurrencyAction | SetMetadataAction | SetTimeSeriesAction;
+export type HistoricActions = SetPairsAction | SetPairAction | SetCurrencyAction | SetMetadataAction | SetTimeSeriesAction;

@@ -1,5 +1,5 @@
 .button {
-  background: $primary;
+  background-color: $primary;
   color: white;
   font-family: Roboto;
   font-weight: 400;
@@ -9,13 +9,13 @@
   border: none;
   border-top: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
   &:hover {
     transform: translateY(2px);
   }
   
   &.active {
-    background: $primary-light;
+    background-color: $primary-light;
     font-weight: 500;
     border-top: 1px solid $info;
   }
@@ -23,6 +23,10 @@
 
 .button-group {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 9px;
+  
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 }
