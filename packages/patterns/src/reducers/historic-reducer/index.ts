@@ -17,6 +17,12 @@ export const historic_reducer = (state: HistoricState, action: HistoricActions):
         pairs: action.payload,
       }
     }
+    case HistoricActionTypes.SET_LOADING_PAIR: {
+      return {
+        ...state,
+        loading_pair: action.payload,
+      }
+    }
     case HistoricActionTypes.SET_PAIR: {
       return {
         ...state,

@@ -10,7 +10,7 @@ import { HistoricActionTypes } from '../../../../../../packages/patterns/src/red
 const Buttons = () => {
   const { historic, set_historic } = useHistoric();
 
-  const { isLoading: loading_pairs } = useCustomQuery({
+  useCustomQuery({
     key: ['pairs'],
     url: '/pairs',
     options: {
@@ -25,11 +25,17 @@ const Buttons = () => {
           type: HistoricActionTypes.SET_PAIR,
           payload: result[0]?.key,
         });
+      },
+      onSettled: () => {
+        set_historic({
+          type: HistoricActionTypes.SET_LOADING_PAIR,
+          payload: false,
+        });
       }
     },
   });
 
-  const { isLoading: loading_currency } = useCustomQuery({
+  useCustomQuery({
     key: ['historic-data', historic.pair],
     url: `/historic-data/${historic.pair}`,
     options: {
@@ -43,11 +49,21 @@ const Buttons = () => {
           type: HistoricActionTypes.SET_TIME_SERIES,
           payload: data['Time Series FX'],
         });
+      },
+      onSettled: () => {
+        set_historic({
+          type: HistoricActionTypes.SET_LOADING_PAIR,
+          payload: false,
+        });
       }
     },
   });
 
   const handle_change_pair = (pair: string) => {
+    set_historic({
+      type: HistoricActionTypes.SET_LOADING_PAIR,
+      payload: true,
+    });
     set_historic({
       type: HistoricActionTypes.SET_PAIR,
       payload: pair,

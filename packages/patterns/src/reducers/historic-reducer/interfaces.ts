@@ -27,6 +27,7 @@ export interface HistoricState {
 export enum HistoricActionTypes {
   SET_PAIRS = 'SET_PAIRS',
   SET_PAIR = 'SET_PAIR',
+  SET_LOADING_PAIR = 'SET_LOADING_PAIR',
   SET_CURRENCY = 'SET_CURRENCY',
   SET_METADATA = 'SET_METADATA',
   SET_TIME_SERIES = 'SET_TIME_SERIES',
@@ -35,6 +36,11 @@ export enum HistoricActionTypes {
 export interface SetPairsAction {
   type: HistoricActionTypes.SET_PAIRS;
   payload: [];
+}
+
+export interface SetLoadingPairAction {
+  type: HistoricActionTypes.SET_LOADING_PAIR;
+  payload: boolean;
 }
 
 export interface SetPairAction {
@@ -57,4 +63,4 @@ export interface SetTimeSeriesAction {
   payload: TimeSeries[];
 }
 
-export type HistoricActions = SetPairsAction | SetPairAction | SetCurrencyAction | SetMetadataAction | SetTimeSeriesAction;
+export type HistoricActions = SetPairsAction | SetLoadingPairAction | SetPairAction | SetCurrencyAction | SetMetadataAction | SetTimeSeriesAction;

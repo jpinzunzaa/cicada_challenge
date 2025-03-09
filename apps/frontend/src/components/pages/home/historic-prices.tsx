@@ -3,6 +3,7 @@
 import moment from 'moment';
 import { useHistoric } from '@repo/patterns/contexts/historic-context';
 import Table from '@repo/ui/widgets/table';
+import Skeleton from '@repo/ui/widgets/skeleton';
 
 interface MarketData {
   date: string;
@@ -32,9 +33,9 @@ const HistoricPrices = () => {
           historic.time_series.length > 0 &&
           historic.time_series.slice(0, 5).map((time_serie: MarketData) => (
             <Table.Row key={time_serie.date}>
-              <Table.Cell>{moment(time_serie.date).format("MMM-DD-YYYY")}</Table.Cell>
-              <Table.Cell className="right">{time_serie.high.toFixed(3)}</Table.Cell>
-              <Table.Cell className="right">{time_serie.low.toFixed(3)}</Table.Cell>
+              <Table.Cell>{historic.loading_pair ? <Skeleton width="80px" height="12px" radius="0" /> : moment(time_serie.date).format("MMM-DD-YYYY")}</Table.Cell>
+              <Table.Cell className="number right">{historic.loading_pair ? <Skeleton width="40px" height="12px" radius="0" /> : time_serie.high.toFixed(3)}</Table.Cell>
+              <Table.Cell className="number right">{historic.loading_pair ? <Skeleton width="40px" height="12px" radius="0" /> : time_serie.low.toFixed(3)}</Table.Cell>
             </Table.Row>
           ))
         }
