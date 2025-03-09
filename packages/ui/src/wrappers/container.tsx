@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
+import classnames from 'classnames';
 
-export const Container = ({ children }: { children: ReactNode }) => {
+export const Container = ({ children, className }: { children: ReactNode, className: string }) => {
   return (
-    <section className="container">
+    <section className={classnames('container', className)}>
       {children}
     </section>
   );

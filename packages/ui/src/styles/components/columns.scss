@@ -1,0 +1,19 @@
+.columns-container {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+
+  grid-template-columns: repeat(var(--cols-mobile, 12), 1fr);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(var(--cols-tablet-v, 6), 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(var(--cols-tablet-h, 4), 1fr);
+  }
+
+  @media (min-width: 1272px) {
+    grid-template-columns: repeat(var(--cols-desktop, 3), 1fr);
+  }
+}

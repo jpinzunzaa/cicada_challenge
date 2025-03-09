@@ -3,6 +3,7 @@ import { HistoricState, HistoricActionTypes, HistoricActions } from './interface
 export const initial_state: HistoricState = {
   pairs: [],
   pair: null,
+  loading_pair: true,
   currency: null,
   metadata: null,
   time_series: [],

@@ -1,18 +1,29 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipc_main } = require('electron');
+const path = require('path');
+const axios = require('axios');
 
-function createWindow() {
-  const mainWindow = new BrowserWindow({
+let main_window;
+
+const create_window = () => {
+  main_window = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      contextIsolation: true,
+      enableRemoteModule: false,
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
-  mainWindow.loadURL('http://localhost:3000');
+  main_window.loadURL('http://localhost:3000');
+
+  main_window.on('closed', () => {
+    main_window = null;
+  });
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(create_window);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -22,6 +33,15 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    create_window();
+  }
+});
+
+ipc_main.handle('fetch-data', async (_, url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
   }
 });

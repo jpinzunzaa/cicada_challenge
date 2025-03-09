@@ -1,6 +1,7 @@
 import { useQuery, UseQueryOptions, QueryKey } from '@tanstack/react-query';
 import { AxiosRequestConfig } from 'axios';
 import { api } from '@repo/utils/axios';
+import { useMemo } from 'react';
 
 type QueryOptions<Data = any, Error = unknown> = {
   key: QueryKey;
@@ -19,7 +20,8 @@ export const useCustomQuery = <Data = any, Error = unknown>({
   options = {},
   config = {},
 }: QueryOptions<Data, Error>) => {
-  return useQuery<Data, Error>({
+
+  const query_options = useMemo(() => ({
     queryKey: key,
     queryFn: async () => {
       try {
@@ -44,9 +46,13 @@ export const useCustomQuery = <Data = any, Error = unknown>({
         }
         throw error;
       } finally {
-        options.onSettled();
+        if (options.onSettled) {
+          options.onSettled();
+        }
       }
     },
     ...options,
-  });
-};
+  }), [key, url, config, options]);
+
+  return useQuery<Data, Error>(query_options);
+}

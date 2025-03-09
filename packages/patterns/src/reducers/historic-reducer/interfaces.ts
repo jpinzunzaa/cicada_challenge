@@ -18,6 +18,7 @@ export interface TimeSeries {
 export interface HistoricState {
   pairs: [];
   pair: string | null;
+  loading_pair: boolean;
   currency: string | null;
   metadata: Metadata | null;
   time_series: TimeSeries[];
