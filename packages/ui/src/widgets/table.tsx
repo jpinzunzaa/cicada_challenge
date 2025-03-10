@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import classnames from 'classnames';
 
 interface TableProps {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   columns?: string;
 }

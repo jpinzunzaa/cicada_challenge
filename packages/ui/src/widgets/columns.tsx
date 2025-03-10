@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import classnames = require('classnames');
+import classnames from 'classnames';
 
 interface ColumnsProps {
   children: ReactNode;

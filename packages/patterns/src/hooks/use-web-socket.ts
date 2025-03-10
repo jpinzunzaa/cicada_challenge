@@ -1,18 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const SOCKET_URL = 'wss://fe-challenge.cicadatech.net/live-data';
 
 export const useWebSocket = () => {
-  const [socket, set_socket] = useState<WebSocket | null>(null);
   const [data, set_data] = useState<any>(null);
   const [error, set_error] = useState<any>(null);
   const [connected, set_connected] = useState(false);
+  const socket_ref = useRef<WebSocket | null>(null);
+  const reconnect_attempts = useRef(0);
+  const max_reconnect_attempts = 10;
 
-  useEffect(() => {
+  const connect_web_socket = () => {
+    if (socket_ref.current) {
+      socket_ref.current.close();
+    }
+
     const ws = new WebSocket(SOCKET_URL);
 
     ws.onopen = () => {
       set_connected(true);
+      reconnect_attempts.current = 0;
     }
 
     ws.onmessage = (event) => {
@@ -23,20 +30,31 @@ export const useWebSocket = () => {
       }
     }
 
-    ws.onerror = (error) => {
-      set_error(error);
+    ws.onerror = (event) => {
+      set_error(event);
     }
 
-    ws.onclose = () => {
+    ws.onclose = (event) => {
       set_connected(false);
+
+      if (!event.wasClean && reconnect_attempts.current < max_reconnect_attempts) {
+        const retry_delay = Math.min(1000 * 2 ** reconnect_attempts.current, 30000);
+        reconnect_attempts.current += 1;
+
+        setTimeout(connect_web_socket, retry_delay);
+      }
     }
 
-    set_socket(ws);
+    socket_ref.current = ws;
+  }
+
+  useEffect(() => {
+    connect_web_socket();
 
     return () => {
-      ws.close();
+      socket_ref.current?.close();
     }
   }, []);
 
-  return { socket, data, error, connected }
+  return { socket: socket_ref.current, data, error, connected }
 }
