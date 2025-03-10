@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { useHistoric } from '@repo/patterns/contexts/historic-context';
 import CurrentExchangeRate from './current-exhange-rate';
@@ -9,6 +10,13 @@ import { exchange_rate_min_max } from '../../../../../../packages/utils/src/calc
 const Banner = () => {
   const { historic } = useHistoric();
   const { max, min } = exchange_rate_min_max(historic.time_series);
+  const [last_update, set_last_update] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (historic.time_series.length > 0) {
+      set_last_update(moment(historic.time_series[0]?.date).format('YYYY-MM-DD HH:mm:ss'));
+    }
+  }, [historic.time_series]);
 
   return (
     <section className="banner">
@@ -53,12 +61,10 @@ const Banner = () => {
         <div className="exchange">
           <p className="label">Last Update (UTC)</p>
           {
-            (historic.loading_pair && historic.time_series.length > 0) ? (
+            historic.loading_pair && historic.time_series.length > 0 ? (
               <Skeleton width="60px" height="16px" radius="0" />
             ) : (
-              <p className="value">
-                {moment(historic.time_series[0]?.date).format('YYYY-MM-DD HH:mm:ss')}
-              </p>
+              <p className="value">{last_update}</p>
             )
           }
         </div>
