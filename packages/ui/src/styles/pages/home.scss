@@ -3,6 +3,91 @@
   flex-direction: column;
   gap: 59px;
 
+  .banner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    background-color: black;
+    border: solid 1px $gray;
+    padding: 12.5px 0;
+    font-family: Roboto;
+
+    .currency-pair {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 46px;
+      border-left: $success solid 3px;
+      padding-left: 16px;
+
+      .label {
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.32px;
+        color: $gray-light;
+        border-bottom: white solid 1px;
+        padding-bottom: 4px;
+      }
+
+      .value {
+        font-family: "Roboto Mono";
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.32px;
+        color: white;
+      }
+    }
+
+    .exchanges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 0 16px;
+
+      .exchange {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &:not(:last-child) {
+          padding-right: 24px;
+          border-right: solid 1px $gray;
+        }
+        .label {
+          font-family: Roboto;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+          letter-spacing: 0.32px;
+          text-align: right;
+          color: $gray;
+        }
+        .value {
+          font-family: "Roboto Mono";
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 22px;
+          letter-spacing: 0.32px;
+          text-align: right;
+          color: white;
+
+          &.success {
+            color: $success;
+          }
+
+          &.danger {
+            color: $danger;
+          }
+        }
+      }
+    }
+  }
+
   .chart {
     width: 100%;
     height: 520px;

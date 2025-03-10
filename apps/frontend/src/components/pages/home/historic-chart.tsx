@@ -70,7 +70,7 @@ const HistoricChart = () => {
             }}
           />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1A202C', border: 'none', color: '#FFF' }}
+            contentStyle={{ backgroundColor: '#1A202C', border: 'none', color: '#FFF', fontFamily: 'Roboto', fontSize: 14 }}
             itemStyle={{ color: '#fff' }}
             labelFormatter={(value) => moment(value).format("MMM DD, YYYY HH:mm")}
             formatter={(value: number) => value.toFixed(3)}

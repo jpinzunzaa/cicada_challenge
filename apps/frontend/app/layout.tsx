@@ -4,6 +4,9 @@ import '../src/styles/main.scss';
 
 export const metadata: Metadata = {
   title: 'Cicada',
+  icons: {
+    icon: '/favicon.png',
+  }
 };
 
 export default function RootLayout({
@@ -13,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
+      <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </head>
       <body>
         <Main>
           {children}
